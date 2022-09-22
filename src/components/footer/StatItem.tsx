@@ -66,6 +66,7 @@ const StatItem = (props: ItemProps) => {
       case Title.DENGUE:
         return <CircleImg />;
       default:
+        /* istanbul ignore next */
         return null;
     }
   }, [title, value]);

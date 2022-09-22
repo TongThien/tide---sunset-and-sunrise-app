@@ -1,5 +1,7 @@
 import { gsap } from 'gsap';
+/* istanbul ignore next */
 import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
+/* istanbul ignore next */
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';

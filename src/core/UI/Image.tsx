@@ -8,7 +8,15 @@ const PointerImage = styled.img`
 interface ImageProps {
   width: string;
   height: string;
-  name: 'cloud' | 'bell' | 'dropdown' | 'menu' | 'temple' | 'water' | 'add';
+  name:
+    | 'cloud'
+    | 'bell'
+    | 'dropdown'
+    | 'menu'
+    | 'temple'
+    | 'water'
+    | 'add'
+    | 'sunny';
   isPointer?: boolean;
   style?: React.CSSProperties;
 }

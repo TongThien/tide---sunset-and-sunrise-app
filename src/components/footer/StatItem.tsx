@@ -68,7 +68,7 @@ const StatItem = (props: ItemProps) => {
       default:
         return null;
     }
-  }, [title]);
+  }, [title, value]);
 
   return (
     <Container>

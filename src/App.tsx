@@ -1,10 +1,11 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import ChartContainer from './components/chart/ChartContainer';
 import Header from './components/HeaderContainer';
 
 function App() {
   return (
     <div>
       <Header />
+      <ChartContainer />
     </div>
   );
 }

@@ -14,8 +14,6 @@ test('TimeCounter > 12', () => {
   expect(value).toBeVisible();
 });
 
-test('TimeCounter === 0', () => {
-  render(<TimeCounter minutes={0} />);
-  const value = screen.getByText('0:00 am');
-  expect(value).toBeVisible();
+test('TimeCounter === undefined', () => {
+  render(<TimeCounter minutes={undefined} />);
 });

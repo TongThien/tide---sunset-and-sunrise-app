@@ -5,8 +5,9 @@ import SVGPath from './SVGPath';
 test('SVGPath', () => {
   render(
     <SVGPath
-      pathRef={{}}
-      sunRef={{}}
+      times={0}
+      pathRef={{} as any}
+      sunRef={{} as any}
       sunPosition={{ x: 30, y: 90 }}
       isMoon={false}
     />

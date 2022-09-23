@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import styled from 'styled-components';
 
 interface TimeProps {
-  minutes: number;
+  minutes: number | undefined;
 }
 
 const Container = styled.div`
@@ -34,12 +34,12 @@ const TimeCounter = (props: TimeProps) => {
   const { minutes } = props;
 
   const time: string = useMemo(() => {
-    return convertMinsToHrsMins(minutes);
+    return convertMinsToHrsMins(minutes || 0);
   }, [minutes]);
 
   return (
     <Container>
-      <TimeContainer>{time}</TimeContainer>
+      <TimeContainer>{minutes ? time : ''}</TimeContainer>
     </Container>
   );
 };

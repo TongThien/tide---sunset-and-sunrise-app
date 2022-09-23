@@ -5,7 +5,7 @@ import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
-import DateCounter from './DateCounter';
+import { getMainTimeCoordinate } from '../../common';
 import SVGPath from './SVGPath';
 import TimeCounter from './TimeCounter';
 
@@ -26,38 +26,45 @@ const Title = styled.div`
   font-size: 20px;
 `;
 
-const ChartContainer = () => {
-  const [time, setTime] = useState<number>(6.9);
+const DEFAULT_HOUR = 0;
 
-  const [sunPosition, setSunPosition] = useState({ x: 0, y: 0 });
-  const [isMoon, setIsMoon] = useState<boolean>(false);
+const ChartContainer = () => {
+  const [time, setTime] = useState<number>(DEFAULT_HOUR);
+  const [date, setDate] = useState<number>(DEFAULT_HOUR);
+
+  const [sunPosition, setSunPosition] = useState({ x: 0, y: 90 });
+  const [isMoon, setIsMoon] = useState<boolean>(true);
 
   const canvasRef: any = useRef();
   const sunRef: any = useRef();
   const pathRef: any = useRef();
 
   const onScroll = useCallback(() => {
-    let scrollPercentage =
+    let processScroll =
       canvasRef.current.scrollLeft /
       (canvasRef.current.scrollWidth - window.innerWidth / 2);
     let rawPath = MotionPathPlugin.getRawPath(pathRef.current);
     MotionPathPlugin.cacheRawPathMeasurements(rawPath);
-    let point = MotionPathPlugin.getPositionOnPath(rawPath, scrollPercentage);
-
+    let point = MotionPathPlugin.getPositionOnPath(rawPath, processScroll);
     if (point.y < 93) {
       setIsMoon(true);
     } else {
       setIsMoon(false);
     }
 
-    setSunPosition({ x: point.x, y: point.y });
+    const mainCoordinate = getMainTimeCoordinate(Math.floor(point.x));
 
-    setTime(scrollPercentage * 60 + 6.9);
+    setTime(mainCoordinate);
+    setDate(processScroll * 60);
+
+    setSunPosition({ x: point.x, y: point.y });
   }, [canvasRef, pathRef]);
 
   useEffect(() => {
     if (canvasRef && canvasRef.current) {
-      canvasRef.current.addEventListener('scroll', onScroll, { passive: true });
+      canvasRef.current.addEventListener('scroll', onScroll, {
+        behavior: 'smooth',
+      });
     }
   }, [canvasRef, onScroll]);
 
@@ -70,9 +77,9 @@ const ChartContainer = () => {
           <span style={{ color: '#f98a00' }}> Sunrise & Sunset</span>
         </div>
       </Title>
-      <DateCounter times={time} isChangeColor={isMoon} />
       <TimeCounter minutes={time} />
       <SVGPath
+        times={date}
         pathRef={pathRef}
         sunRef={sunRef}
         isMoon={isMoon}

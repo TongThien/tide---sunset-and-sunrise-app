@@ -1,5 +1,3 @@
-import { LegacyRef, MutableRefObject, SVGProps } from "react"
-
 interface SunProps {
     sunLineRef: any
     sunSVGPath?: string

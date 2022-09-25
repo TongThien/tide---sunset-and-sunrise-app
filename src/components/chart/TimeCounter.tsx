@@ -23,11 +23,11 @@ export const convertMinsToHrsMins = (minutes: number): string => {
   const hour = Math.floor(day);
   const minute = Math.floor(decimal * 60);
   if (hour > 12) {
-    return `${hour - 12}:${minute > 9 ? `${minute}` : `0${minute}`} pm`;
+    return `${(hour - 12 >= 10) ? hour - 12 : `0${hour - 12}`}:${minute > 9 ? `${minute}` : `0${minute}`} pm`;
   } else if (hour === 0) {
-    return `${0}:${minute > 9 ? `${minute}` : `0${minute}`} am`;
+    return `00:${minute > 9 ? `${minute}` : `0${minute}`} am`;
   }
-  return `${hour}:${minute > 9 ? `${minute}` : `0${minute}`} am`;
+  return `${hour >= 10 ? hour : `0${hour}`}:${minute > 9 ? `${minute}` : `0${minute}`} am`;
 };
 
 const TimeCounter = (props: TimeProps) => {

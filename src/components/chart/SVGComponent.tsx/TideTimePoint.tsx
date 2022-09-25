@@ -1,5 +1,5 @@
 import { memo, useEffect, useMemo, useState } from "react"
-import { SUN_POINT_TIME, TIDE_POINT_TIME, TIDE_WITH_BACKGROUND_POINT_TIME, timeType } from "../../../common"
+import { TIDE_POINT_TIME, TIDE_WITH_BACKGROUND_POINT_TIME, timeType } from "../../../common"
 import { mappingTime } from "../../../utils/mappingTime"
 import { setTimePoint } from "../../../utils/setTime"
 interface TideProps {

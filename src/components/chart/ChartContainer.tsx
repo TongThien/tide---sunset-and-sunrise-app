@@ -80,7 +80,7 @@ const ChartContainer = () => {
   useEffect(() => {
     chartRef.current.addEventListener('scroll', positionSunHandler)
     return chartRef.current.removeEventListener('scroll', () => { })
-  }, [])
+  }, [positionSunHandler])
 
 
   return (

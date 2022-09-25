@@ -17,7 +17,7 @@ const TimeContainer = styled.div`
   position: fixed;
 `;
 
-const convertMinsToHrsMins = (minutes: number): string => {
+export const convertMinsToHrsMins = (minutes: number): string => {
   const day = minutes % 24;
   const decimal = day % 1;
   const hour = Math.floor(day);

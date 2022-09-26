@@ -10,7 +10,7 @@ test('TimeCounter < 12', () => {
 
 test('TimeCounter > 12', () => {
   render(<TimeCounter minutes={13} />);
-  const value = screen.getByText('1:00 pm');
+  const value = screen.getByText('01:00 pm');
   expect(value).toBeVisible();
 });
 

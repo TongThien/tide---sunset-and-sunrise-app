@@ -1,4 +1,4 @@
-import { DEFAULT_POINT } from "../common"
+import { DEFAULT_POINT } from "./common"
 import { convertMinsToHrsMins } from "../components/chart/TimeCounter"
 
 export const setTimePoint = (times:number[],yCoordinate:number,tideHeight?:number)=>{

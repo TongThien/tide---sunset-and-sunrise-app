@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { SVG_PATH } from '../../common';
+import { SVG_PATH } from '../../utils/common';
 
 interface SProps {
   pathRef: any;

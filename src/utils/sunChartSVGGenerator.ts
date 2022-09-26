@@ -1,9 +1,9 @@
 import { curveCardinal, line, } from "d3"
 import { flatMap, range } from "lodash"
-import { DEFAULT_HEIGHT, DEFAULT_POINT } from "../common"
+import { DAYS, DEFAULT_HEIGHT, DEFAULT_POINT } from "./common"
 
-const MORNING_TIME_POINT = [7, 13, 19, 25, 31, 37, 43, 49, 55, 61]
 
+const MORNING_TIME_POINT = range(7,DAYS,6).map(i=>i)
 
 
 export const sunChartSVGGenerator = () => {

@@ -1,6 +1,6 @@
 import { area, curveBasis,  } from "d3"
 import { flatMap,range } from "lodash"
-import { DEFAULT_HEIGHT } from "../common"
+import { DEFAULT_HEIGHT } from "./common"
 
 export const backgroundChartSVGGenerator = ()=>{
     //24+24+12 = 60 hours => 60 point x

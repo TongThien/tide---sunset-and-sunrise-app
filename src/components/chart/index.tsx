@@ -1,13 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
-import {
-  DEFAULT_DATE,
-  DEFAULT_HEIGHT,
-  DEFAULT_POINT,
-  DEFAULT_WIDTH,
-} from '../../utils/common';
-
-import { convertMinsToHrsMins } from './TimeCounter';
+import { DEFAULT_DATE, DEFAULT_HEIGHT, DEFAULT_POINT, DEFAULT_WIDTH } from '../../utils/common';
 
 import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
 import { sunChartSVGGenerator } from '../../utils/sunChartSVGGenerator';
@@ -18,9 +11,9 @@ import SunTimePoint from './SVGComponent.tsx/SunTimePoint';
 import TideBackground from './SVGComponent.tsx/TideBackground';
 import TideTimePoint from './SVGComponent.tsx/TideTimePoint';
 import TitleComponent from './TitleComponent';
+import { convertMinsToHrsMins } from '../../utils/covertMinsToHrsMins';
 
 const Container = styled.div`
-  max-width: 1000px;
   margin: auto;
   position: relative;
 `;
@@ -47,16 +40,13 @@ const ChartContainer = () => {
 
   const { path: sunSVGPath, points: sunPoints } = sunChartSVGGenerator();
   const [sunPosition, setSunPosition] = useState(sunPoints[0]);
-  const [time, setTime] = useState<string>(
-    convertMinsToHrsMins(sunPoints[0].x / DEFAULT_POINT)
-  );
+  const [time, setTime] = useState<string>(convertMinsToHrsMins(sunPoints[0].x / DEFAULT_POINT));
   const [moonTime, setIsMoonTime] = useState<boolean>(false);
   const [date, setDate] = useState<number>(DEFAULT_DATE);
 
   const positionSunHandler = useCallback(() => {
     const chartSVGEl = chartRef.current;
-    const scrollPercentage =
-      chartSVGEl.scrollLeft / (chartSVGEl.scrollWidth - 1000);
+    const scrollPercentage = chartSVGEl.scrollLeft / (chartSVGEl.scrollWidth - window.innerWidth);
 
     const rawPath = MotionPathPlugin.getRawPath(sunLineRef.current);
     MotionPathPlugin.cacheRawPathMeasurements(rawPath);
@@ -78,7 +68,7 @@ const ChartContainer = () => {
 
   useEffect(() => {
     chartRef.current.addEventListener('scroll', positionSunHandler, {
-      behavior: 'smooth',
+      behavior: 'smooth'
     });
     return chartRef.current.removeEventListener('scroll', () => {});
   }, [positionSunHandler]);
@@ -87,17 +77,13 @@ const ChartContainer = () => {
     <Container>
       <ChartSvg ref={chartRef}>
         <svg height={DEFAULT_HEIGHT} width={DEFAULT_WIDTH}>
-          <TideBackground />
           <NightBackground />
+          <TideBackground />
           <SunLine sunLineRef={sunLineRef} sunSVGPath={sunSVGPath} />
           <SunTimePoint />
           <TideTimePoint />
           <TideTimePoint isBackground />
-          <MovingSun
-            isMoonTime={moonTime}
-            sunPosition={sunPosition}
-            date={date}
-          />
+          <MovingSun isMoonTime={moonTime} sunPosition={sunPosition} date={date} />
         </svg>
       </ChartSvg>
       <TimeContainer>

@@ -1,11 +1,10 @@
 import styled from 'styled-components';
-import WeatherInformation from './content/WeatherInfomation';
-import StatComponent from './footer/Stat';
-import HeaderTop from './header/MenuTop';
+import WeatherInformation from '../content/WeatherInfomation';
+import StatComponent from '../footer/Stat';
+import HeaderTop from './MenuTop';
 
 const Container = styled.div`
   margin: auto;
-  max-width: 1000px;
 `;
 
 const HeaderContent = () => {

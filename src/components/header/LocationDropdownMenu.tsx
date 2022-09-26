@@ -14,9 +14,9 @@ const LocationDropdownMenu = () => {
       <div>
         Current Location
         <ImageSrc
-          name='dropdown'
-          width='12px'
-          height='12px'
+          name="dropdown"
+          width="12px"
+          height="12px"
           isPointer
           style={{ marginLeft: '5px', marginBottom: '-2px' }}
         />

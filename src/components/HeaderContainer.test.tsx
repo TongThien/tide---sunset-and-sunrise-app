@@ -1,6 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom/extend-expect';
-import HeaderContainer from './HeaderContainer';
+import HeaderContainer from '.';
 
 test('HeaderContainer', () => {
   render(<HeaderContainer />);

@@ -19,10 +19,8 @@ const Information = (props: TempProps) => {
   const { value, img, style } = props;
   return (
     <Flex style={style}>
-      <ImageSrc name={img} height='24px' width='24px' />
-      <ValueContent>
-        {img === 'temple' ? value + HEAT_SYMBOL : value + WATER_SYMBOL}
-      </ValueContent>
+      <ImageSrc name={img} height="24px" width="24px" />
+      <ValueContent>{img === 'temple' ? value + HEAT_SYMBOL : value + WATER_SYMBOL}</ValueContent>
     </Flex>
   );
 };

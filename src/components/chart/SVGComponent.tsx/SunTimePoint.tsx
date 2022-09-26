@@ -8,7 +8,7 @@ const SunTimePoint = () => {
 
   useEffect(() => {
     const xSunTime = mappingTime(SUN_POINT_TIME);
-    const sunTime = setTimePoint(xSunTime, 280);
+    const sunTime = setTimePoint(xSunTime, 275);
     setSunTime(sunTime);
   }, []);
 
@@ -16,7 +16,7 @@ const SunTimePoint = () => {
     <g>
       {sunTime?.map((i: any) => {
         return (
-          <text key={i.x} x={i.x} y={i.y} fill='orange' fontSize={13}>
+          <text key={i.x} x={i.x} y={i.y} fill="orange" fontSize={13} fontWeight={600}>
             {i.time}
           </text>
         );

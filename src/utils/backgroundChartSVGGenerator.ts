@@ -1,21 +1,38 @@
-import { area, curveBasis,  } from "d3"
-import { flatMap,range } from "lodash"
-import { DEFAULT_HEIGHT } from "./common"
+import { area, curveBasis } from 'd3';
+import { flatMap, range } from 'lodash';
+import {
+  DEFAULT_HEIGHT,
+  DEFAULT_LOW_TIDE,
+  DEFAULT_POINT,
+  DEFAULT_TOP_TIDE,
+  TIDE_POINT_TIME,
+  TIDE_WITH_BACKGROUND_POINT_TIME
+} from './common';
+import { mappingTime } from './mappingTime';
 
-export const backgroundChartSVGGenerator = ()=>{
-    //24+24+12 = 60 hours => 60 point x
-    const y = flatMap(range(0,30,1).map(i=>[50,150]))
-    const backgroundPoints:any = range(0,60,1).map((x:number, i:number) => {
-        return {
-          x: x*300,
-          y: DEFAULT_HEIGHT - y[i],
-        }
-      })
-      const pathGen =  area().x((point:any)=>point.x).y0((point:any)=>point.y).y1(DEFAULT_HEIGHT).curve(curveBasis)
+export const backgroundChartSVGGenerator = () => {
+  const mappingPoint = mappingTime(
+    [...TIDE_WITH_BACKGROUND_POINT_TIME, ...TIDE_POINT_TIME].sort((a, b) => a - b)
+  );
+  const initPoint = [0, ...mappingPoint, mappingPoint[mappingPoint.length - 1] + 4];
+  const y = flatMap(
+    range(0, initPoint.length / 2, 1).map((i) => [DEFAULT_TOP_TIDE, DEFAULT_LOW_TIDE])
+  );
 
-      return {
-        points:backgroundPoints,
-        path:pathGen(backgroundPoints) || undefined
-      }
-      
-}
+  const backgroundPoints: any = initPoint.map((x: number, i: number) => {
+    return {
+      x: x * DEFAULT_POINT,
+      y: DEFAULT_HEIGHT - y[i]
+    };
+  });
+  const pathGen = area()
+    .x((point: any) => point.x)
+    .y0((point: any) => point.y)
+    .y1(DEFAULT_HEIGHT)
+    .curve(curveBasis);
+
+  return {
+    points: backgroundPoints,
+    path: pathGen(backgroundPoints) || undefined
+  };
+};

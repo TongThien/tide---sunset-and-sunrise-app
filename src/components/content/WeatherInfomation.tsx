@@ -19,17 +19,13 @@ const Content = styled.div`
 const WeatherInformation = () => {
   return (
     <Container>
-      <ImageSrc name='cloud' width='70px' height='80px' />
+      <ImageSrc name="cloud" width="70px" height="80px" />
       <Content>
         <Flex style={{ flexDirection: 'column' }}>
           <div style={{ fontSize: '40px' }}>Cloudy</div>
           <Flex>
-            <Information
-              value={29}
-              img='temple'
-              style={{ marginRight: '50px' }}
-            />
-            <Information value={27} img='water' />
+            <Information value={29} img="temple" style={{ marginRight: '50px' }} />
+            <Information value={27} img="water" />
           </Flex>
         </Flex>
       </Content>

@@ -12,9 +12,9 @@ const Container = styled.div`
 const HeaderTop = () => {
   return (
     <Container>
-      <ImageSrc name='menu' width='30px' height='42px' isPointer />
+      <ImageSrc name="menu" width="30px" height="42px" isPointer />
       <LocationDropdownMenu />
-      <ImageSrc name='bell' width='30px' height='42px' isPointer />
+      <ImageSrc name="bell" width="30px" height="42px" isPointer />
     </Container>
   );
 };

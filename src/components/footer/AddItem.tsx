@@ -12,13 +12,7 @@ const Container = styled.div`
 const AddItem = () => {
   return (
     <Container>
-      <ImageSrc
-        name='add'
-        width='35px'
-        height='35px'
-        isPointer
-        style={{ marginTop: '12px' }}
-      />
+      <ImageSrc name="add" width="35px" height="35px" isPointer style={{ marginTop: '12px' }} />
       <div>Add</div>
     </Container>
   );

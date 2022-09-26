@@ -6,14 +6,7 @@ const NightBackground = () => {
     <g>
       {NIGHT_TIME_POINT.map((i: any) => {
         return (
-          <rect
-            x={i.x}
-            y={0}
-            width={i.width}
-            height={DEFAULT_HEIGHT}
-            opacity='0.4'
-            key={i.x}
-          />
+          <rect x={i.x} y={0} width={i.width} height={DEFAULT_HEIGHT} opacity="0.7" key={i.x} />
         );
       })}
     </g>

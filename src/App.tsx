@@ -1,5 +1,5 @@
-import ChartContainer from './components/chart/ChartContainer';
-import Header from './components/HeaderContainer';
+import Header from './components';
+import ChartContainer from './components/chart';
 function App() {
   return (
     <div>

@@ -5,11 +5,11 @@ import ItemPSI from './ItemPSI';
 export enum Title {
   PSI = 'PSI',
   RAIN = 'RAIN',
-  DENGUE = 'DENGUE',
+  DENGUE = 'DENGUE'
 }
 enum Uom {
   MM = 'mm',
-  GOOD = 'good',
+  GOOD = 'good'
 }
 
 interface ItemProps {

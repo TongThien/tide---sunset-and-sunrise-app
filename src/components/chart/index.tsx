@@ -39,6 +39,7 @@ const ChartContainer = () => {
   const sunLineRef = useRef('');
 
   const { path: sunSVGPath, points: sunPoints } = sunChartSVGGenerator();
+
   const [sunPosition, setSunPosition] = useState(sunPoints[0]);
   const [time, setTime] = useState<string>(convertMinsToHrsMins(sunPoints[0].x / DEFAULT_POINT));
   const [moonTime, setIsMoonTime] = useState<boolean>(false);

@@ -1,5 +1,7 @@
-import { NIGHT_TIME_POINT } from '../../../utils/common';
+import React from 'react';
+import { render, screen } from '@testing-library/react';
+import NightBackground from './NightBackground';
 
 test('NightBackground', () => {
-  expect(NIGHT_TIME_POINT.length).toEqual(4);
+  render(<NightBackground />);
 });

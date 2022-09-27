@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { DEFAULT_DATE, DEFAULT_HEIGHT, DEFAULT_POINT, DEFAULT_WIDTH } from '../../utils/common';
 
-import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
+import { MotionPathPlugin } from 'gsap/dist/MotionPathPlugin';
 import { sunChartSVGGenerator } from '../../utils/sunChartSVGGenerator';
 import MovingSun from './SVGComponent.tsx/MovingSun';
 import NightBackground from './SVGComponent.tsx/NightBackground';
@@ -44,7 +44,7 @@ const ChartContainer = () => {
   const [time, setTime] = useState<string>(convertMinsToHrsMins(sunPoints[0].x / DEFAULT_POINT));
   const [moonTime, setIsMoonTime] = useState<boolean>(false);
   const [date, setDate] = useState<number>(DEFAULT_DATE);
-
+  /* istanbul ignore next */
   const positionSunHandler = useCallback(() => {
     const chartSVGEl = chartRef.current;
     const scrollPercentage = chartSVGEl.scrollLeft / (chartSVGEl.scrollWidth - window.innerWidth);

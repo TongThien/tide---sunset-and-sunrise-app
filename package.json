@@ -59,5 +59,14 @@
     "jest": "^27.5.1",
     "jest-watch-typeahead": "0.6.5",
     "ts-jest": "^29.0.1"
+  },
+  "jest": {
+    "transformIgnorePatterns": [
+      "<rootDir>/node_modules/(?!d3)/"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx,ts,tsx}",
+      "!src/index.tsx"
+    ]
   }
 }

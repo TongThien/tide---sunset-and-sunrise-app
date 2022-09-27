@@ -1,4 +1,4 @@
-import { curveCardinal, line } from 'd3';
+import { curveBasis, line } from 'd3';
 import { flatMap, range } from 'lodash';
 import { DAYS, DEFAULT_HEIGHT, DEFAULT_POINT } from './common';
 
@@ -15,7 +15,7 @@ export const sunChartSVGGenerator = () => {
   const pathGen = line()
     .x((p: any) => p.x)
     .y((p: any) => p.y)
-    .curve(curveCardinal);
+    .curve(curveBasis);
 
   return {
     points: morningPoints,

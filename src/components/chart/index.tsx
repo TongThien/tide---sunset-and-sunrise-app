@@ -73,7 +73,11 @@ const ChartContainer = () => {
       behavior: 'smooth'
     });
     return chartRef.current.removeEventListener('scroll', () => {});
-  }, [positionSunHandler, DEFAULT_POINT]);
+  }, [positionSunHandler]);
+
+  useEffect(()=>{
+    setSunPosition(sunPoints[0])
+  },[window.innerWidth])
 
   return (
     <Container>

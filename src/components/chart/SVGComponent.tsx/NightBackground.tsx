@@ -1,7 +1,8 @@
 import { memo } from 'react';
-import { DEFAULT_HEIGHT, NIGHT_TIME_POINT } from '../../../utils/common';
+import { useConstant } from '../../../utils/useConstant';
 
 const NightBackground = () => {
+  const { DEFAULT_HEIGHT, NIGHT_TIME_POINT } = useConstant();
   return (
     <g>
       {NIGHT_TIME_POINT.map((i: any) => {

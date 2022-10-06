@@ -1,8 +1,9 @@
 import { memo, useEffect, useMemo, useState } from 'react';
 import styled from 'styled-components';
-import { TIDE_POINT_TIME, TIDE_WITH_BACKGROUND_POINT_TIME, timeType } from '../../../utils/common';
+import { timeType } from '../../../utils/common';
+import { convertMinsToHrsMins } from '../../../utils/covertMinsToHrsMins';
 import { mappingTime } from '../../../utils/mappingTime';
-import { setTimePoint } from '../../../utils/setTime';
+import { useConstant } from '../../../utils/useConstant';
 interface TideProps {
   isBackground?: boolean;
 }
@@ -14,7 +15,20 @@ const CustomText = styled.text`
 `;
 
 const TideTimePoint = ({ isBackground = false }: TideProps) => {
+  const { TIDE_POINT_TIME, TIDE_WITH_BACKGROUND_POINT_TIME } = useConstant();
   const [tideTime, setTideTime] = useState<timeType[]>();
+  const { DEFAULT_POINT } = useConstant();
+
+  const setTimePoint = (times: number[], yCoordinate: number, tideHeight?: number) => {
+    return times.map((i) => {
+      return {
+        x: i * DEFAULT_POINT,
+        y: yCoordinate,
+        time: convertMinsToHrsMins(i),
+        tideHeight: tideHeight
+      };
+    });
+  };
 
   useEffect(() => {
     if (isBackground) {
@@ -28,7 +42,7 @@ const TideTimePoint = ({ isBackground = false }: TideProps) => {
 
       setTideTime(tideTime);
     }
-  }, [isBackground]);
+  }, [isBackground, DEFAULT_POINT]);
 
   const node = useMemo(() => {
     if (isBackground) {
@@ -74,7 +88,7 @@ const TideTimePoint = ({ isBackground = false }: TideProps) => {
         })}
       </g>
     );
-  }, [isBackground, tideTime]);
+  }, [isBackground, tideTime, DEFAULT_POINT]);
 
   return node;
 };

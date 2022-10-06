@@ -1,7 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
-import { DEFAULT_DATE, DEFAULT_HEIGHT, DEFAULT_POINT, DEFAULT_WIDTH } from '../../utils/common';
-
 import { MotionPathPlugin } from 'gsap/dist/MotionPathPlugin';
 import { sunChartSVGGenerator } from '../../utils/sunChartSVGGenerator';
 import MovingSun from './SVGComponent.tsx/MovingSun';
@@ -12,6 +10,7 @@ import TideBackground from './SVGComponent.tsx/TideBackground';
 import TideTimePoint from './SVGComponent.tsx/TideTimePoint';
 import TitleComponent from './TitleComponent';
 import { convertMinsToHrsMins } from '../../utils/covertMinsToHrsMins';
+import { useConstant } from '../../utils/useConstant';
 
 const Container = styled.div`
   margin: auto;
@@ -19,7 +18,7 @@ const Container = styled.div`
 `;
 
 const ChartSvg = styled.div`
-  overflow-x: scroll;
+  overflow-x: auto;
   padding-bottom: 20px;
 `;
 
@@ -35,6 +34,7 @@ const ChartTime = styled.div`
 `;
 
 const ChartContainer = () => {
+  const { DEFAULT_DATE, DEFAULT_HEIGHT, DEFAULT_POINT, DEFAULT_WIDTH } = useConstant();
   const chartRef: any = useRef();
   const sunLineRef = useRef('');
 
@@ -44,6 +44,7 @@ const ChartContainer = () => {
   const [time, setTime] = useState<string>(convertMinsToHrsMins(sunPoints[0].x / DEFAULT_POINT));
   const [moonTime, setIsMoonTime] = useState<boolean>(false);
   const [date, setDate] = useState<number>(DEFAULT_DATE);
+
   /* istanbul ignore next */
   const positionSunHandler = useCallback(() => {
     const chartSVGEl = chartRef.current;
@@ -65,14 +66,14 @@ const ChartContainer = () => {
 
     setDate(day + DEFAULT_DATE);
     setTime(convertMinsToHrsMins(times));
-  }, [sunLineRef, chartRef]);
+  }, [sunLineRef, chartRef, DEFAULT_POINT]);
 
   useEffect(() => {
     chartRef.current.addEventListener('scroll', positionSunHandler, {
       behavior: 'smooth'
     });
     return chartRef.current.removeEventListener('scroll', () => {});
-  }, [positionSunHandler]);
+  }, [positionSunHandler, DEFAULT_POINT]);
 
   return (
     <Container>
